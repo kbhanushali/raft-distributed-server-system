@@ -1,0 +1,4 @@
+*.class
+*.conf
+/classes
+/runtime
