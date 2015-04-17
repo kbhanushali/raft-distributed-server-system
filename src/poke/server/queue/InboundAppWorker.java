@@ -127,9 +127,10 @@ public class InboundAppWorker extends Thread {
 						System.out.println("Sending to all clusters");
 						
 						//If the message has come from with in the cluster, only then broadcast image to other clusters.
-						if(req.getHeader().getClusterId() == 4)
-						ConnectionManager.interClusterBroadcast(request);
-						System.out.println("Sent to all clusters");
+						if(req.getHeader().getClusterId() == 4){
+							ConnectionManager.interClusterBroadcast(request);
+							System.out.println("Sent to all clusters");
+						}
 						
 						//Send the messages to all the Nodes with in the cluster.
 						ConnectionManager.broadcastToClient(request);

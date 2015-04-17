@@ -85,6 +85,7 @@ public class ElectionManager implements ElectionListener {
 	/** The leader */
 	Integer leaderNode;
 	
+	// The different states that a node can be in ..//
 	public enum RState {
 		Follower, Candidate, Leader
 	}
@@ -140,12 +141,13 @@ public class ElectionManager implements ElectionListener {
 					+ req.getCandidateId());
 			this.leaderNode = req.getCandidateId();
 			this.termId = req.getTermId();
+			// the current term id
 			//TODO Last log index to be synced
 			return;
 		}
 
 		// else fall through to an election
-
+// if the time has expired, an election is initiated.
 		if (req.hasExpires()) {
 			long ct = System.currentTimeMillis();
 			if (ct > req.getExpires()) {
@@ -166,6 +168,8 @@ public class ElectionManager implements ElectionListener {
 	 * 
 	 * @param mgmt
 	 */
+	
+	//checks whether a leader has been elected..///
 	public void assessCurrentState(Management mgmt) {
 		// logger.info("ElectionManager.assessCurrentState() checking elected leader status");
 		if (firstTime > 0 && ConnectionManager.getNumMgmtConnections() > 0) {
@@ -174,13 +178,14 @@ public class ElectionManager implements ElectionListener {
 				this.firstTime--;
 				askWhoIsTheLeader();
 				try {
+					//Waiting on the thread for response. to avoid multiple requests.
 					Thread.sleep(1500);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
+		// if the election has not been declared, or the leader has not been elected or when an election is in progress; this is called.
 		} else if (leaderNode == null && (election == null || !election.isElectionInprogress())) {
 			// if this is not an election state, we need to assess the H&S of
 			// the network's leader
@@ -211,7 +216,7 @@ public class ElectionManager implements ElectionListener {
 
 		election.clear();
 	}
-
+// gives back the current leader if the node is aware of who the leader is // else responds I do not know who the leader is/
 	private void respondToWhoIsTheLeader(Management mgmt) {
 		if (this.leaderNode == null) {
 			logger.info("----> I cannot respond to who the leader is! I don't know!");

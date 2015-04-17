@@ -13,6 +13,8 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
+
+//We have used the FloodMax algorithm skeleton and modified the code to implement Raft
 package poke.server.election;
 
 import java.util.Date;
@@ -34,9 +36,9 @@ public class Raft implements Election{
 	protected static Logger logger = LoggerFactory.getLogger("Raft");
 
 	private Integer nodeId;
-	private ElectionState current;
+	private ElectionState currentState;
 	private int maxHops = -1; // unlimited
-	private ElectionListener listener;
+	private ElectionListener eListener;
 	private Integer lastSeenTerm; // last seen term to be used for casting max one vote
 	private int voteCount = 1;
 	private int abstainCount = 0;
@@ -44,24 +46,24 @@ public class Raft implements Election{
 	
 	@Override
 	public void setListener(ElectionListener listener) {
-		this.listener = listener;
+		this.eListener = listener;
 		
 	}
 
 	@Override
 	public synchronized void clear() {
-		current = null;
+		currentState = null;
 		
 	}
 
 	@Override
 	public boolean isElectionInprogress() {
-		return current != null;
+		return currentState != null;
 	}
 
 	@Override
 	public Integer getTermId() {
-		return listener.getTermId();
+		return eListener.getTermId();
 	}
 
 	@Override
@@ -71,27 +73,33 @@ public class Raft implements Election{
 
 	@Override
 	public Integer getWinner() {
-		if (current == null)
+		if (currentState == null)
 			return null;
-		else if (current.state.getNumber() == ElectAction.DECLAREELECTION_VALUE)
-			return current.candidate;
+		else if (currentState.state.getNumber() == ElectAction.DECLAREELECTION_VALUE)
+			return currentState.candidate;
 		else
 			return null;
 	}
 
+	/* ***************************************************
+	 * Process management message
+	 * Check if the timer has expired
+	 * Take appropriate action as per the message received
+	 * 
+	 * **************************************************** */
 	@Override
 	public Management process(Management mgmt) {
 		if (!mgmt.hasElection())
 			return null;
 
-		LeaderElection req = mgmt.getElection();
-		if (req.getExpires() <= System.currentTimeMillis()) {
+		LeaderElection requset = mgmt.getElection();
+		if (requset.getExpires() <= System.currentTimeMillis()) {
 			// election has expired without a conclusion?
 		}
 
 		Management rtn = null;
 
-		if (req.getAction().getNumber() == ElectAction.DECLAREELECTION_VALUE) {
+		if (requset.getAction().getNumber() == ElectAction.DECLAREELECTION_VALUE) {
 			// an election is declared!
 
 			// required to eliminate duplicate messages - on a declaration,
@@ -106,69 +114,58 @@ public class Raft implements Election{
 			}
 
 			// I got here because the election is unknown to me
-
-			// this 'if debug is on' should cover the below dozen or so
-			// println()s. It is here to help with seeing when an election
-			// occurs.
+			
 			if (logger.isDebugEnabled()) {
 			}
 
 			System.out.println("\n\n*********************************************************");
-			System.out.println(" FLOOD MAX ELECTION: Election declared");
-			System.out.println("   Term ID:  " + req.getTermId());
-			System.out.println("   Last Log Index:  " + req.getLastLogIndex());
+			System.out.println(" RAFT ELECTION: Election declared");
+			System.out.println("   Term ID:  " + requset.getTermId());
+			System.out.println("   Last Log Index:  " + requset.getLastLogIndex());
 			System.out.println("   Rcv from:     Node " + mgmt.getHeader().getOriginator());
-			System.out.println("   Expires:      " + new Date(req.getExpires()));
-			System.out.println("   Nominates:    Node " + req.getCandidateId());
-			System.out.println("   Desc:         " + req.getDesc());
+			System.out.println("   Expires:      " + new Date(requset.getExpires()));
+			System.out.println("   Nominates:    Node " + requset.getCandidateId());
+			System.out.println("   Desc:         " + requset.getDesc());
 			System.out.print("   Routing tbl:  [");
 			for (VectorClock rp : rtes)
-				System.out.print("Node " + rp.getNodeId() + " (" + rp.getVersion() + "," + rp.getTime() + "), ");
+			System.out.print("Node " + rp.getNodeId() + " (" + rp.getVersion() + "," + rp.getTime() + "), ");
 			System.out.println("]");
 			System.out.println("*********************************************************\n\n");
 
-			
-			// sync master IDs to current election
-			//ElectionIDGenerator.setMasterID(req.getElectId());
 
-			/**
-			 * a new election can be declared over an existing election.
-			 * 
-			 * TODO need to have an monotonically increasing ID that we can test
-			 */
-			boolean isNew = updateCurrent(req);
+			boolean isNew = updateCurrent(requset);
 			rtn = castVote(mgmt, isNew);
 
-		} else if (req.getAction().getNumber() == ElectAction.DECLAREVOID_VALUE) {
+		} else if (requset.getAction().getNumber() == ElectAction.DECLAREVOID_VALUE) {
 			// no one was elected, I am dropping into standby mode
 			logger.info("TODO: no one was elected, I am dropping into standby mode");
 			this.clear();
 			notify(false, null);
-		} else if (req.getAction().getNumber() == ElectAction.DECLAREWINNER_VALUE) {
+		} else if (requset.getAction().getNumber() == ElectAction.DECLAREWINNER_VALUE) {
 			// some node declared itself the leader
-			logger.info("Election " + req.getTermId() + ": Node " + req.getCandidateId() + " is declared the leader");
+			logger.info("Election " + requset.getTermId() + ": Node " + requset.getCandidateId() + " is declared the leader");
 			updateCurrent(mgmt.getElection());
-			listener.setState(RState.Follower);
-			current.active = false; // it's over
-			notify(true, req.getCandidateId());
-		} else if (req.getAction().getNumber() == ElectAction.ABSTAIN_VALUE) {
+			eListener.setState(RState.Follower);
+			currentState.active = false; // it's over
+			notify(true, requset.getCandidateId());
+		} else if (requset.getAction().getNumber() == ElectAction.ABSTAIN_VALUE) {
 			abstainCount++;
 			if(abstainCount >= ((ConnectionManager.getNumMgmtConnections()+1)/2)+1)
 			{
 				rtn = abstainCandidature(mgmt);
 				notify(false, this.nodeId);
-				listener.setState(RState.Follower);
+				eListener.setState(RState.Follower);
 				this.clear();
 				voteCount = 1;
 				abstainCount = 0;
 			}
-		} else if (req.getAction().getNumber() == ElectAction.NOMINATE_VALUE) {
-			if(req.getCandidateId() == this.nodeId){
+		} else if (requset.getAction().getNumber() == ElectAction.NOMINATE_VALUE) {
+			if(requset.getCandidateId() == this.nodeId){
 				voteCount++;
 				if(voteCount >=((ConnectionManager.getNumMgmtConnections()+1)/2)+1){
 					rtn = declareWinner(mgmt);
 					notify(true, this.nodeId);
-					listener.setState(RState.Leader);
+					eListener.setState(RState.Leader);
 					this.clear();
 					voteCount = 1;
 					abstainCount = 0;
@@ -185,38 +182,38 @@ public class Raft implements Election{
 
 	
 	private synchronized Management abstainCandidature(Management mgmt){
-		LeaderElection req = mgmt.getElection();
+		LeaderElection requset = mgmt.getElection();
 		
-		LeaderElection.Builder elb = LeaderElection.newBuilder();
-		MgmtHeader.Builder mhb = MgmtHeader.newBuilder();
-		mhb.setTime(System.currentTimeMillis());
-		mhb.setSecurityCode(-999); // TODO add security
+		LeaderElection.Builder ebuilder = LeaderElection.newBuilder();
+		MgmtHeader.Builder mgmtBuilder = MgmtHeader.newBuilder();
+		mgmtBuilder.setTime(System.currentTimeMillis());
+		mgmtBuilder.setSecurityCode(-999);
 
 		// reversing path. If I'm the farthest a message can travel, reverse the
 		// sending
-		if (elb.getHops() == 0)
-			mhb.clearPath();
+		if (ebuilder.getHops() == 0)
+			mgmtBuilder.clearPath();
 		else
-			mhb.addAllPath(mgmt.getHeader().getPathList());
+			mgmtBuilder.addAllPath(mgmt.getHeader().getPathList());
 
-		mhb.setOriginator(mgmt.getHeader().getOriginator());
+		mgmtBuilder.setOriginator(mgmt.getHeader().getOriginator());
 
-		elb.setTermId(req.getTermId());
-		elb.setAction(ElectAction.DECLAREVOID);
+		ebuilder.setTermId(requset.getTermId());
+		ebuilder.setAction(ElectAction.DECLAREVOID);
 		
-		elb.setDesc(req.getDesc());
-		elb.setLastLogIndex(req.getLastLogIndex());
-		elb.setExpires(req.getExpires());
-		elb.setCandidateId(req.getCandidateId());
-		if (req.getHops() == -1)
-			elb.setHops(-1);
+		ebuilder.setDesc(requset.getDesc());
+		ebuilder.setLastLogIndex(requset.getLastLogIndex());
+		ebuilder.setExpires(requset.getExpires());
+		ebuilder.setCandidateId(requset.getCandidateId());
+		if (requset.getHops() == -1)
+			ebuilder.setHops(-1);
 		else
-			elb.setHops(req.getHops() - 1);
+			ebuilder.setHops(requset.getHops() - 1);
 
-		if (elb.getHops() == 0) {
+		if (ebuilder.getHops() == 0) {
 			// reverse travel of the message to ensure it gets back to
 			// the originator
-			elb.setHops(mgmt.getHeader().getPathCount());
+			ebuilder.setHops(mgmt.getHeader().getPathCount());
 
 			// no clear winner, send back the candidate with the highest
 			// known ID. So, if a candidate sees itself, it will
@@ -224,7 +221,7 @@ public class Raft implements Election{
 		} else {
 			// forwarding the message on so, keep the history where the
 			// message has been
-			mhb.addAllPath(mgmt.getHeader().getPathList());
+			mgmtBuilder.addAllPath(mgmt.getHeader().getPathList());
 		}
 		
 
@@ -232,21 +229,23 @@ public class Raft implements Election{
 		VectorClock.Builder rpb = VectorClock.newBuilder();
 		rpb.setNodeId(this.nodeId);
 		rpb.setTime(System.currentTimeMillis());
-		rpb.setVersion(req.getTermId());
-		mhb.addPath(rpb);
+		rpb.setVersion(requset.getTermId());
+		mgmtBuilder.addPath(rpb);
 
 		Management.Builder mb = Management.newBuilder();
-		mb.setHeader(mhb.build());
-		mb.setElection(elb.build());
+		mb.setHeader(mgmtBuilder.build());
+		mb.setElection(ebuilder.build());
 
 		return mb.build(); 
 	}
 	
+	
+	//Cast a vote if not casted already
 	private synchronized Management castVote(Management mgmt, boolean isNew) {
 		if (!mgmt.hasElection())
 			return null;
 
-		if (current == null || !current.isActive()) {
+		if (currentState == null || !currentState.isActive()) {
 			return null;
 		}
 
@@ -293,10 +292,10 @@ public class Raft implements Election{
 
 		elb.setTermId(req.getTermId());
 		
-		if(listener.getTermId() < req.getTermId() && listener.getLastLogIndex() <= req.getLastLogIndex())
+		if(eListener.getTermId() < req.getTermId() && eListener.getLastLogIndex() <= req.getLastLogIndex())
 		{
 			elb.setAction(ElectAction.NOMINATE);
-			listener.setTermId(req.getTermId());
+			eListener.setTermId(req.getTermId());
 			ElectionIDGenerator.setMasterID(req.getTermId());
 		}
 		else
@@ -325,49 +324,6 @@ public class Raft implements Election{
 			mhb.addAllPath(mgmt.getHeader().getPathList());
 		}
 		
-		
-		// my vote
-//		if (req.getCandidateId() == this.nodeId) {
-//			// if I am not in the list and the candidate is myself, I can
-//			// declare myself to be the leader.
-//			//
-//			// this is non-deterministic as it assumes the message has
-//			// reached all nodes in the network (because we know the
-//			// diameter or the number of nodes).
-//			//
-//			// can end up with a partitioned graph of leaders if hops <
-//			// diameter!
-//
-//			// this notify goes out to on-node listeners and will arrive before
-//			// the other nodes receive notice.
-//			notify(true, this.nodeId);
-//
-//			elb.setAction(ElectAction.DECLAREWINNER);
-//			elb.setHops(mgmt.getHeader().getPathCount());
-//			logger.info("Node " + this.nodeId + " is declaring itself the leader");
-//		} else {
-//			if (req.getCandidateId() < this.nodeId)
-//				elb.setCandidateId(this.nodeId);
-//
-//			if (req.getHops() == -1)
-//				elb.setHops(-1);
-//			else
-//				elb.setHops(req.getHops() - 1);
-//
-//			if (elb.getHops() == 0) {
-//				// reverse travel of the message to ensure it gets back to
-//				// the originator
-//				elb.setHops(mgmt.getHeader().getPathCount());
-//
-//				// no clear winner, send back the candidate with the highest
-//				// known ID. So, if a candidate sees itself, it will
-//				// declare itself to be the winner (see above).
-//			} else {
-//				// forwarding the message on so, keep the history where the
-//				// message has been
-//				mhb.addAllPath(mgmt.getHeader().getPathList());
-//			}
-//		}
 
 		// add myself (may allow duplicate entries, if cycling is allowed)
 		VectorClock.Builder rpb = VectorClock.newBuilder();
@@ -454,26 +410,26 @@ public class Raft implements Election{
 	}
 	
 	private void notify(boolean success, Integer leader) {
-		if (listener != null)
-			listener.concludeWith(success, leader);
+		if (eListener != null)
+			eListener.concludeWith(success, leader);
 	}
 
 	private boolean updateCurrent(LeaderElection req) {
 		boolean isNew = false;
 
-		if (current == null) {
-			current = new ElectionState();
+		if (currentState == null) {
+			currentState = new ElectionState();
 			isNew = true;
 		}
 
 		//current.electionID = req.getElectId();
-		current.candidate = req.getCandidateId();
-		current.desc = req.getDesc();
-		current.maxDuration = req.getExpires();
-		current.startedOn = System.currentTimeMillis();
-		current.state = req.getAction();
-		current.id = -1; // TODO me or sender?
-		current.active = true;
+		currentState.candidate = req.getCandidateId();
+		currentState.desc = req.getDesc();
+		currentState.maxDuration = req.getExpires();
+		currentState.startedOn = System.currentTimeMillis();
+		currentState.state = req.getAction();
+		currentState.id = -1; // TODO me or sender?
+		currentState.active = true;
 
 		return isNew;
 	}

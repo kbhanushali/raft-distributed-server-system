@@ -18,7 +18,6 @@ package poke.server.managers;
 import io.netty.channel.Channel;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -43,7 +42,13 @@ import poke.core.Mgmt.Management;
 public class ConnectionManager {
 	protected static Logger logger = LoggerFactory.getLogger("management");
 
-	/** node ID to channel */
+	/** node ID to channel 
+	 * clientConnections holds all the connections from a client to the server.
+	 * mgmtConnections has all the intra/inter cluster communication to and from all the nodes in the network.
+	 * interClusterConnections is a HashMap that maintains the channel along with the node ID.
+	 * Each of the communication channels are a HashMap that hold a mapping of the nodeId and the channel
+	 * */
+	
 	private static HashMap<Integer, Channel> connections = new HashMap<Integer, Channel>();
 	private static HashMap<Integer, Channel> mgmtConnections = new HashMap<Integer, Channel>();
 	private static HashMap<Integer, Channel> clientConnections = new HashMap<Integer, Channel>();
@@ -68,7 +73,7 @@ public class ConnectionManager {
 			clientConnections.put(clientId, channel);
 	}
 
-	// Added for interCluster communication by Krishna
+	// Added for interCluster communication 
 	public static void addinterClusterConnection(Integer ClusterId,
 			Channel channel) {
 		logger.info("ConnectionManager adding connection to Leader of Cluster "
@@ -156,7 +161,7 @@ public class ConnectionManager {
 			ch.flush();
 		}
 	}
-
+// Sends out the data to the nodes in the interCluster set up
 	public synchronized static void interClusterBroadcast(Request req) {
 		if (req == null)
 			return;
@@ -168,7 +173,7 @@ public class ConnectionManager {
 			ch.flush();
 		}
 	}
-
+// This function broadcasts all the to the client on the appropriate channel
 	public synchronized static void broadcastToClient(Request req) {
 		if (req == null)
 			return;
@@ -188,7 +193,7 @@ public class ConnectionManager {
 //			ch.flush();
 //		}
 	}
-
+// Leader calls broadcasr to send the data to all the nodes in the cluster.
 	public synchronized static void broadcast(Management mgmt) {
 		if (mgmt == null)
 			return;
@@ -196,7 +201,8 @@ public class ConnectionManager {
 		for (Channel ch : mgmtConnections.values())
 			ch.write(mgmt);
 	}
-
+// In case a node gets the data, it has to be forwarded to the leader for it to be sent out to all other nodes in the cluster. - Therefore Unicast
+	// Unicast is called to send the data from a node to the leader.//Shreya
 	public synchronized static void unicast(Request req) {
 		if (req == null)
 			return;
