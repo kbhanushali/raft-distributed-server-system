@@ -9,13 +9,23 @@ message Header {
          required int32 cluster_id = 3;
          required bool is_client = 4;
          required string caption = 5;	// image caption / title
+         optional int32 phase = 7; // tells which phase the image is in. 1.from client to server, 2. from server to leader, 3. split image sent from leader
+         						 // to servers. 4. grey scale image back to leader // 5. final merged image broadcast to servers, 6. server to client.
 }
 
 message PayLoad {
          required bytes data = 1; // Image format should be PNG
          optional int32 img_id = 2; // To identify image uniquely
-		optional int32 chunk_id = 3; //To identify chunk of a image uniquely
-		optional int32 total_chunks = 4;//Total no of chunks
+		 optional int32 chunk_id = 3; //To identify chunk of a image uniquely
+		 optional int32 total_chunks = 4;//Total no of chunks
+		 optional bool isTile = 5;// to tell if it is the original image or a tile.
+}
+
+message Tile{
+		 required string tileSuffix = 1; //used to identify the tile uniquely for an image.
+		 required int32 tileX = 2; //tiles x-cordinate
+		 required int32 tileY = 3; //tiles y-cordinate
+		 required bool is_processed = 4; // to check if the tile is processed or not.
 }
 
 message Ping{
@@ -26,4 +36,6 @@ message Request {
          required Header header = 1;
          required PayLoad payload = 2;
          required Ping ping = 3;
+         optional Tile tile =4;
+         
 }

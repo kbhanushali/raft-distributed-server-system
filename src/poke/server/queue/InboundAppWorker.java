@@ -41,6 +41,7 @@ import poke.comm.Image.Ping;
 import poke.comm.Image.Request;
 import poke.server.managers.ConnectionManager;
 import poke.server.managers.ElectionManager;
+import poke.server.managers.ImageManager;
 import poke.server.resources.database_connectivity;
 
 import com.google.protobuf.ByteString;
@@ -53,7 +54,7 @@ public class InboundAppWorker extends Thread {
 	PerChannelQueue sq;
 	boolean forever = true;
 	int imageId = 0;
-	database_connectivity db;
+	ImageManager iManager;
 	HashMap<Integer, SortedMap<Integer,ByteString>> imgMap; //It stores reference to entire image.
 	SortedMap<Integer,ByteString> imgChunkMap; //for storing image chunks
 	
@@ -62,8 +63,8 @@ public class InboundAppWorker extends Thread {
 		super(tgrp, "inbound-" + workerId);
 		this.workerId = workerId;
 		this.sq = sq;
-		db = new database_connectivity();
 		imgMap = new HashMap<Integer, SortedMap<Integer,ByteString>>();
+		iManager = new ImageManager();
 		imgChunkMap = new TreeMap<Integer, ByteString>();
 		
 		if (sq.inbound == null)
@@ -100,49 +101,21 @@ public class InboundAppWorker extends Thread {
 					{	
 						return;
 					}	
+					
 
-					//If I am the leader,broadcast images to all nodes in cluster
+					//If I am the leader,break image and send to all slave serviers
 					if(leaderNode != null && leaderNode == nodeId){
-						Request.Builder newReq = Request.newBuilder();
-						Header.Builder newHeader = Header.newBuilder();
-						PayLoad.Builder newPayload = PayLoad.newBuilder();
-						Ping.Builder newPing = Ping.newBuilder();
-						
-						newHeader.setClientId(req.getHeader().getClientId());
-						newHeader.setClusterId(req.getHeader().getClusterId());
-						newHeader.setCaption(req.getHeader().getCaption());
-						newHeader.setIsClient(false);
-						
-						newPing.setIsPing(req.getPing().getIsPing());
-						
-						newPayload.setData(req.getPayload().getData());
-						
-						newReq.setHeader(newHeader);
-						newReq.setPing(newPing);
-						newReq.setPayload(newPayload);
-						
-						Request request = newReq.build();
-						
-						ConnectionManager.broadcast(request);
-						System.out.println("Sending to all clusters");
-						
-						//If the message has come from with in the cluster, only then broadcast image to other clusters.
-						if(req.getHeader().getClusterId() == 4){
-							ConnectionManager.interClusterBroadcast(request);
-							System.out.println("Sent to all clusters");
+						if(req.getHeader().getPhase() == 2 || req.getHeader().getPhase() == 4 ){
+							iManager.processImage((generateImage(req)),req);
 						}
-						
-						//Send the messages to all the Nodes with in the cluster.
-						ConnectionManager.broadcastToClient(request);
-						
-						generateImage(req);
-						
-						
-						
+						}
 						//If the node is a non-leader node, then send the image to the leader for further processing
-					}else if(leaderNode != nodeId ){
-						//Build new Request
-						if(req.getHeader().getIsClient() == true){
+					else if(leaderNode != nodeId ){
+							//Build new Request
+							if(req.getHeader().getPhase() == 3 || req.getHeader().getPhase() == 5){
+								iManager.processImage((generateImage(req)),req);
+						}
+						if(req.getHeader().getIsClient() == true || req.getHeader().getPhase() == 1){
 							Request.Builder newReq = Request.newBuilder();
 							Header.Builder newHeader = Header.newBuilder();
 							PayLoad.Builder newPayload = PayLoad.newBuilder();
@@ -152,19 +125,17 @@ public class InboundAppWorker extends Thread {
 							newHeader.setClusterId(req.getHeader().getClusterId());
 							newHeader.setCaption(req.getHeader().getCaption());
 							newHeader.setIsClient(false);
+							newHeader.setPhase(2);
 							
 							newPing.setIsPing(false);
 							
 							newPayload.setData(req.getPayload().getData());
-							
 							
 							newReq.setHeader(newHeader);
 							newReq.setPing(newPing);
 							newReq.setPayload(newPayload);
 							System.out.println("Sending to leader");
 							ConnectionManager.unicast(newReq.build());
-						}else{
-							generateImage(req);
 						}
 					}
 					
@@ -210,10 +181,13 @@ public class InboundAppWorker extends Thread {
 		}
 	}
 	
+	
+	//
+	
 	//This function re-generates the image from the individual chunks and stores it to images folder
-	public boolean generateImage(Request req) {
+	public BufferedImage generateImage(Request req) {
 		boolean rtn = false;
-		BufferedImage img;
+		BufferedImage img= null;
 
 		//saving individual image chunks in hashmap
 		imgChunkMap.put(req.getPayload().getChunkId(), req.getPayload()
@@ -238,29 +212,16 @@ public class InboundAppWorker extends Thread {
 				ByteArrayInputStream stream1 = new ByteArrayInputStream(
 						stream.toByteArray());
 				img = ImageIO.read(stream1);
-				
-				//Writing image to file system and img path to the database.
-				try {
-					ImageIO.write(img, "jpg", new File("../../images/"
-							+ imageId + ".jpg"));
-					String query = "insert into CMPE_275.Data values ("
-							+ ElectionManager.getInstance().getNodeId() + ","
-							+ ElectionManager.getInstance().getTermId() + ","
-							+ imageId + ", '../../images/" + imageId
-							+ ".png','" + req.getHeader().getCaption() + "')";
-					db.execute_query(query);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				imageId++;
-				rtn = true;
 			} catch (IOException e) {
 				e.printStackTrace();
-				rtn = false;
 			}
 
 		}
-		return rtn;
+		return img;
+		
 	}
+	
+	
+	
+	
 }

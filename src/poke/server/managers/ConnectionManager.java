@@ -91,6 +91,14 @@ public class ConnectionManager {
 		else
 			return connections.get(nodeId);
 	}
+	
+	public static HashMap<Integer, Channel> getAllConnections(boolean isMgmt) {
+
+		if (isMgmt)
+			return mgmtConnections;
+		else
+			return connections;
+	}
 
 	public static Channel getClientConnection(Integer clientId) {
 		return clientConnections.get(clientId);
@@ -212,6 +220,19 @@ public class ConnectionManager {
 			connections.get(leaderNode).write(req);
 		connections.get(leaderNode).flush();
 	}
+	
+	public synchronized static void unicast(Request req, Integer nodeId) {
+		if (req == null)
+			return;
+
+		//Integer leaderNode = ElectionManager.getInstance().whoIsTheLeader();
+		Integer DestNode = nodeId;
+		if (DestNode != null)
+			connections.get(DestNode).write(req);
+		connections.get(DestNode).flush();
+	}
+	
+	
 
 	public static int getNumMgmtConnections() {
 		return mgmtConnections.size();

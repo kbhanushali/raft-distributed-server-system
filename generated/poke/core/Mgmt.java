@@ -8,10 +8,10 @@ public final class Mgmt {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface HeartbeatOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface HeartbeatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Heartbeat)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required int64 time_ref = 2;
     /**
      * <code>required int64 time_ref = 2;</code>
      */
@@ -25,8 +25,9 @@ public final class Mgmt {
    * Protobuf type {@code Heartbeat}
    */
   public static final class Heartbeat extends
-      com.google.protobuf.GeneratedMessage
-      implements HeartbeatOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:Heartbeat)
+      HeartbeatOrBuilder {
     // Use Heartbeat.newBuilder() to construct.
     private Heartbeat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -117,7 +118,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required int64 time_ref = 2;
     public static final int TIME_REF_FIELD_NUMBER = 2;
     private long timeRef_;
     /**
@@ -139,7 +139,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasTimeRef()) {
         memoizedIsInitialized = 0;
@@ -250,8 +251,9 @@ public final class Mgmt {
      * Protobuf type {@code Heartbeat}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.HeartbeatOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Heartbeat)
+        poke.core.Mgmt.HeartbeatOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_Heartbeat_descriptor;
@@ -368,7 +370,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required int64 time_ref = 2;
       private long timeRef_ ;
       /**
        * <code>required int64 time_ref = 2;</code>
@@ -412,10 +413,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:Heartbeat)
   }
 
-  public interface NetworkOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface NetworkOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Network)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required int32 from_node_id = 1;
     /**
      * <code>required int32 from_node_id = 1;</code>
      */
@@ -425,7 +426,6 @@ public final class Mgmt {
      */
     int getFromNodeId();
 
-    // required int32 to_node_id = 2;
     /**
      * <code>required int32 to_node_id = 2;</code>
      */
@@ -435,7 +435,6 @@ public final class Mgmt {
      */
     int getToNodeId();
 
-    // required .Network.NetworkAction action = 3;
     /**
      * <code>required .Network.NetworkAction action = 3;</code>
      */
@@ -449,8 +448,9 @@ public final class Mgmt {
    * Protobuf type {@code Network}
    */
   public static final class Network extends
-      com.google.protobuf.GeneratedMessage
-      implements NetworkOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:Network)
+      NetworkOrBuilder {
     // Use Network.newBuilder() to construct.
     private Network(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -675,7 +675,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required int32 from_node_id = 1;
     public static final int FROM_NODE_ID_FIELD_NUMBER = 1;
     private int fromNodeId_;
     /**
@@ -691,7 +690,6 @@ public final class Mgmt {
       return fromNodeId_;
     }
 
-    // required int32 to_node_id = 2;
     public static final int TO_NODE_ID_FIELD_NUMBER = 2;
     private int toNodeId_;
     /**
@@ -707,7 +705,6 @@ public final class Mgmt {
       return toNodeId_;
     }
 
-    // required .Network.NetworkAction action = 3;
     public static final int ACTION_FIELD_NUMBER = 3;
     private poke.core.Mgmt.Network.NetworkAction action_;
     /**
@@ -731,7 +728,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasFromNodeId()) {
         memoizedIsInitialized = 0;
@@ -864,8 +862,9 @@ public final class Mgmt {
      * Protobuf type {@code Network}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.NetworkOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Network)
+        poke.core.Mgmt.NetworkOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_Network_descriptor;
@@ -1008,7 +1007,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required int32 from_node_id = 1;
       private int fromNodeId_ ;
       /**
        * <code>required int32 from_node_id = 1;</code>
@@ -1041,7 +1039,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required int32 to_node_id = 2;
       private int toNodeId_ ;
       /**
        * <code>required int32 to_node_id = 2;</code>
@@ -1074,7 +1071,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required .Network.NetworkAction action = 3;
       private poke.core.Mgmt.Network.NetworkAction action_ = poke.core.Mgmt.Network.NetworkAction.NODEJOIN;
       /**
        * <code>required .Network.NetworkAction action = 3;</code>
@@ -1121,10 +1117,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:Network)
   }
 
-  public interface LeaderElectionOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface LeaderElectionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:LeaderElection)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required int32 last_log_index = 1;
     /**
      * <code>required int32 last_log_index = 1;</code>
      */
@@ -1134,7 +1130,6 @@ public final class Mgmt {
      */
     int getLastLogIndex();
 
-    // required int32 term_id = 2;
     /**
      * <code>required int32 term_id = 2;</code>
      *
@@ -1152,7 +1147,6 @@ public final class Mgmt {
      */
     int getTermId();
 
-    // required int32 candidate_id = 3;
     /**
      * <code>required int32 candidate_id = 3;</code>
      */
@@ -1162,7 +1156,6 @@ public final class Mgmt {
      */
     int getCandidateId();
 
-    // optional string desc = 4;
     /**
      * <code>optional string desc = 4;</code>
      */
@@ -1177,7 +1170,6 @@ public final class Mgmt {
     com.google.protobuf.ByteString
         getDescBytes();
 
-    // required .LeaderElection.ElectAction action = 5;
     /**
      * <code>required .LeaderElection.ElectAction action = 5;</code>
      */
@@ -1187,7 +1179,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.LeaderElection.ElectAction getAction();
 
-    // optional int64 expires = 6 [default = -1];
     /**
      * <code>optional int64 expires = 6 [default = -1];</code>
      *
@@ -1205,7 +1196,6 @@ public final class Mgmt {
      */
     long getExpires();
 
-    // optional int32 hops = 7 [default = -1];
     /**
      * <code>optional int32 hops = 7 [default = -1];</code>
      *
@@ -1233,8 +1223,9 @@ public final class Mgmt {
    * Protobuf type {@code LeaderElection}
    */
   public static final class LeaderElection extends
-      com.google.protobuf.GeneratedMessage
-      implements LeaderElectionOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:LeaderElection)
+      LeaderElectionOrBuilder {
     // Use LeaderElection.newBuilder() to construct.
     private LeaderElection(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -1296,8 +1287,9 @@ public final class Mgmt {
               break;
             }
             case 34: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000008;
-              desc_ = input.readBytes();
+              desc_ = bs;
               break;
             }
             case 40: {
@@ -1488,7 +1480,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required int32 last_log_index = 1;
     public static final int LAST_LOG_INDEX_FIELD_NUMBER = 1;
     private int lastLogIndex_;
     /**
@@ -1504,7 +1495,6 @@ public final class Mgmt {
       return lastLogIndex_;
     }
 
-    // required int32 term_id = 2;
     public static final int TERM_ID_FIELD_NUMBER = 2;
     private int termId_;
     /**
@@ -1528,7 +1518,6 @@ public final class Mgmt {
       return termId_;
     }
 
-    // required int32 candidate_id = 3;
     public static final int CANDIDATE_ID_FIELD_NUMBER = 3;
     private int candidateId_;
     /**
@@ -1544,7 +1533,6 @@ public final class Mgmt {
       return candidateId_;
     }
 
-    // optional string desc = 4;
     public static final int DESC_FIELD_NUMBER = 4;
     private java.lang.Object desc_;
     /**
@@ -1587,7 +1575,6 @@ public final class Mgmt {
       }
     }
 
-    // required .LeaderElection.ElectAction action = 5;
     public static final int ACTION_FIELD_NUMBER = 5;
     private poke.core.Mgmt.LeaderElection.ElectAction action_;
     /**
@@ -1603,7 +1590,6 @@ public final class Mgmt {
       return action_;
     }
 
-    // optional int64 expires = 6 [default = -1];
     public static final int EXPIRES_FIELD_NUMBER = 6;
     private long expires_;
     /**
@@ -1627,7 +1613,6 @@ public final class Mgmt {
       return expires_;
     }
 
-    // optional int32 hops = 7 [default = -1];
     public static final int HOPS_FIELD_NUMBER = 7;
     private int hops_;
     /**
@@ -1669,7 +1654,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasLastLogIndex()) {
         memoizedIsInitialized = 0;
@@ -1834,8 +1820,9 @@ public final class Mgmt {
      * Protobuf type {@code LeaderElection}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.LeaderElectionOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:LeaderElection)
+        poke.core.Mgmt.LeaderElectionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_LeaderElection_descriptor;
@@ -2020,7 +2007,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required int32 last_log_index = 1;
       private int lastLogIndex_ ;
       /**
        * <code>required int32 last_log_index = 1;</code>
@@ -2053,7 +2039,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required int32 term_id = 2;
       private int termId_ ;
       /**
        * <code>required int32 term_id = 2;</code>
@@ -2102,7 +2087,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required int32 candidate_id = 3;
       private int candidateId_ ;
       /**
        * <code>required int32 candidate_id = 3;</code>
@@ -2135,7 +2119,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional string desc = 4;
       private java.lang.Object desc_ = "";
       /**
        * <code>optional string desc = 4;</code>
@@ -2149,9 +2132,12 @@ public final class Mgmt {
       public java.lang.String getDesc() {
         java.lang.Object ref = desc_;
         if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          desc_ = s;
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            desc_ = s;
+          }
           return s;
         } else {
           return (java.lang.String) ref;
@@ -2209,7 +2195,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required .LeaderElection.ElectAction action = 5;
       private poke.core.Mgmt.LeaderElection.ElectAction action_ = poke.core.Mgmt.LeaderElection.ElectAction.DECLAREELECTION;
       /**
        * <code>required .LeaderElection.ElectAction action = 5;</code>
@@ -2245,7 +2230,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int64 expires = 6 [default = -1];
       private long expires_ = -1L;
       /**
        * <code>optional int64 expires = 6 [default = -1];</code>
@@ -2294,7 +2278,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int32 hops = 7 [default = -1];
       private int hops_ = -1;
       /**
        * <code>optional int32 hops = 7 [default = -1];</code>
@@ -2366,10 +2349,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:LeaderElection)
   }
 
-  public interface VotingBallotOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface VotingBallotOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:VotingBallot)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required string ballot_id = 1;
     /**
      * <code>required string ballot_id = 1;</code>
      */
@@ -2384,7 +2367,6 @@ public final class Mgmt {
     com.google.protobuf.ByteString
         getBallotIdBytes();
 
-    // required string desc = 2;
     /**
      * <code>required string desc = 2;</code>
      */
@@ -2399,7 +2381,6 @@ public final class Mgmt {
     com.google.protobuf.ByteString
         getDescBytes();
 
-    // required .VotingBallot.BallotType ballot_format = 3;
     /**
      * <code>required .VotingBallot.BallotType ballot_format = 3;</code>
      */
@@ -2409,7 +2390,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.VotingBallot.BallotType getBallotFormat();
 
-    // optional int64 expires_sec = 6;
     /**
      * <code>optional int64 expires_sec = 6;</code>
      *
@@ -2427,7 +2407,6 @@ public final class Mgmt {
      */
     long getExpiresSec();
 
-    // optional int32 margin_to_win = 7;
     /**
      * <code>optional int32 margin_to_win = 7;</code>
      *
@@ -2445,7 +2424,6 @@ public final class Mgmt {
      */
     int getMarginToWin();
 
-    // optional int32 max_hops = 8 [default = -1];
     /**
      * <code>optional int32 max_hops = 8 [default = -1];</code>
      *
@@ -2475,8 +2453,9 @@ public final class Mgmt {
    * </pre>
    */
   public static final class VotingBallot extends
-      com.google.protobuf.GeneratedMessage
-      implements VotingBallotOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:VotingBallot)
+      VotingBallotOrBuilder {
     // Use VotingBallot.newBuilder() to construct.
     private VotingBallot(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -2523,13 +2502,15 @@ public final class Mgmt {
               break;
             }
             case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              ballotId_ = input.readBytes();
+              ballotId_ = bs;
               break;
             }
             case 18: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              desc_ = input.readBytes();
+              desc_ = bs;
               break;
             }
             case 24: {
@@ -2698,7 +2679,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required string ballot_id = 1;
     public static final int BALLOT_ID_FIELD_NUMBER = 1;
     private java.lang.Object ballotId_;
     /**
@@ -2741,7 +2721,6 @@ public final class Mgmt {
       }
     }
 
-    // required string desc = 2;
     public static final int DESC_FIELD_NUMBER = 2;
     private java.lang.Object desc_;
     /**
@@ -2784,7 +2763,6 @@ public final class Mgmt {
       }
     }
 
-    // required .VotingBallot.BallotType ballot_format = 3;
     public static final int BALLOT_FORMAT_FIELD_NUMBER = 3;
     private poke.core.Mgmt.VotingBallot.BallotType ballotFormat_;
     /**
@@ -2800,7 +2778,6 @@ public final class Mgmt {
       return ballotFormat_;
     }
 
-    // optional int64 expires_sec = 6;
     public static final int EXPIRES_SEC_FIELD_NUMBER = 6;
     private long expiresSec_;
     /**
@@ -2824,7 +2801,6 @@ public final class Mgmt {
       return expiresSec_;
     }
 
-    // optional int32 margin_to_win = 7;
     public static final int MARGIN_TO_WIN_FIELD_NUMBER = 7;
     private int marginToWin_;
     /**
@@ -2848,7 +2824,6 @@ public final class Mgmt {
       return marginToWin_;
     }
 
-    // optional int32 max_hops = 8 [default = -1];
     public static final int MAX_HOPS_FIELD_NUMBER = 8;
     private int maxHops_;
     /**
@@ -2887,7 +2862,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasBallotId()) {
         memoizedIsInitialized = 0;
@@ -3045,8 +3021,9 @@ public final class Mgmt {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.VotingBallotOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:VotingBallot)
+        poke.core.Mgmt.VotingBallotOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_VotingBallot_descriptor;
@@ -3220,7 +3197,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required string ballot_id = 1;
       private java.lang.Object ballotId_ = "";
       /**
        * <code>required string ballot_id = 1;</code>
@@ -3234,9 +3210,12 @@ public final class Mgmt {
       public java.lang.String getBallotId() {
         java.lang.Object ref = ballotId_;
         if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          ballotId_ = s;
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            ballotId_ = s;
+          }
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3294,7 +3273,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required string desc = 2;
       private java.lang.Object desc_ = "";
       /**
        * <code>required string desc = 2;</code>
@@ -3308,9 +3286,12 @@ public final class Mgmt {
       public java.lang.String getDesc() {
         java.lang.Object ref = desc_;
         if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          desc_ = s;
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            desc_ = s;
+          }
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3368,7 +3349,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required .VotingBallot.BallotType ballot_format = 3;
       private poke.core.Mgmt.VotingBallot.BallotType ballotFormat_ = poke.core.Mgmt.VotingBallot.BallotType.SIMPLEMAJORITY;
       /**
        * <code>required .VotingBallot.BallotType ballot_format = 3;</code>
@@ -3404,7 +3384,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int64 expires_sec = 6;
       private long expiresSec_ ;
       /**
        * <code>optional int64 expires_sec = 6;</code>
@@ -3453,7 +3432,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int32 margin_to_win = 7;
       private int marginToWin_ ;
       /**
        * <code>optional int32 margin_to_win = 7;</code>
@@ -3502,7 +3480,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int32 max_hops = 8 [default = -1];
       private int maxHops_ = -1;
       /**
        * <code>optional int32 max_hops = 8 [default = -1];</code>
@@ -3570,10 +3547,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:VotingBallot)
   }
 
-  public interface VotingCastOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface VotingCastOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:VotingCast)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required string voter = 1;
     /**
      * <code>required string voter = 1;</code>
      */
@@ -3588,7 +3565,6 @@ public final class Mgmt {
     com.google.protobuf.ByteString
         getVoterBytes();
 
-    // required string ballot_id = 2;
     /**
      * <code>required string ballot_id = 2;</code>
      */
@@ -3603,7 +3579,6 @@ public final class Mgmt {
     com.google.protobuf.ByteString
         getBallotIdBytes();
 
-    // optional int32 candidate = 10;
     /**
      * <code>optional int32 candidate = 10;</code>
      *
@@ -3621,7 +3596,6 @@ public final class Mgmt {
      */
     int getCandidate();
 
-    // optional int32 rank = 11;
     /**
      * <code>optional int32 rank = 11;</code>
      *
@@ -3647,8 +3621,9 @@ public final class Mgmt {
    * </pre>
    */
   public static final class VotingCast extends
-      com.google.protobuf.GeneratedMessage
-      implements VotingCastOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:VotingCast)
+      VotingCastOrBuilder {
     // Use VotingCast.newBuilder() to construct.
     private VotingCast(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -3695,13 +3670,15 @@ public final class Mgmt {
               break;
             }
             case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              voter_ = input.readBytes();
+              voter_ = bs;
               break;
             }
             case 18: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              ballotId_ = input.readBytes();
+              ballotId_ = bs;
               break;
             }
             case 80: {
@@ -3754,7 +3731,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required string voter = 1;
     public static final int VOTER_FIELD_NUMBER = 1;
     private java.lang.Object voter_;
     /**
@@ -3797,7 +3773,6 @@ public final class Mgmt {
       }
     }
 
-    // required string ballot_id = 2;
     public static final int BALLOT_ID_FIELD_NUMBER = 2;
     private java.lang.Object ballotId_;
     /**
@@ -3840,7 +3815,6 @@ public final class Mgmt {
       }
     }
 
-    // optional int32 candidate = 10;
     public static final int CANDIDATE_FIELD_NUMBER = 10;
     private int candidate_;
     /**
@@ -3864,7 +3838,6 @@ public final class Mgmt {
       return candidate_;
     }
 
-    // optional int32 rank = 11;
     public static final int RANK_FIELD_NUMBER = 11;
     private int rank_;
     /**
@@ -3897,7 +3870,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasVoter()) {
         memoizedIsInitialized = 0;
@@ -4037,8 +4011,9 @@ public final class Mgmt {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.VotingCastOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:VotingCast)
+        poke.core.Mgmt.VotingCastOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_VotingCast_descriptor;
@@ -4190,7 +4165,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required string voter = 1;
       private java.lang.Object voter_ = "";
       /**
        * <code>required string voter = 1;</code>
@@ -4204,9 +4178,12 @@ public final class Mgmt {
       public java.lang.String getVoter() {
         java.lang.Object ref = voter_;
         if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          voter_ = s;
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            voter_ = s;
+          }
           return s;
         } else {
           return (java.lang.String) ref;
@@ -4264,7 +4241,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required string ballot_id = 2;
       private java.lang.Object ballotId_ = "";
       /**
        * <code>required string ballot_id = 2;</code>
@@ -4278,9 +4254,12 @@ public final class Mgmt {
       public java.lang.String getBallotId() {
         java.lang.Object ref = ballotId_;
         if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          ballotId_ = s;
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            ballotId_ = s;
+          }
           return s;
         } else {
           return (java.lang.String) ref;
@@ -4338,7 +4317,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int32 candidate = 10;
       private int candidate_ ;
       /**
        * <code>optional int32 candidate = 10;</code>
@@ -4387,7 +4365,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int32 rank = 11;
       private int rank_ ;
       /**
        * <code>optional int32 rank = 11;</code>
@@ -4447,10 +4424,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:VotingCast)
   }
 
-  public interface VotingStatusOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface VotingStatusOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:VotingStatus)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required string ballot_id = 1;
     /**
      * <code>required string ballot_id = 1;</code>
      */
@@ -4465,7 +4442,6 @@ public final class Mgmt {
     com.google.protobuf.ByteString
         getBallotIdBytes();
 
-    // required .VotingStatus.VoteStatus status = 2;
     /**
      * <code>required .VotingStatus.VoteStatus status = 2;</code>
      */
@@ -4475,7 +4451,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.VotingStatus.VoteStatus getStatus();
 
-    // optional int32 winner = 3;
     /**
      * <code>optional int32 winner = 3;</code>
      */
@@ -4493,8 +4468,9 @@ public final class Mgmt {
    * </pre>
    */
   public static final class VotingStatus extends
-      com.google.protobuf.GeneratedMessage
-      implements VotingStatusOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:VotingStatus)
+      VotingStatusOrBuilder {
     // Use VotingStatus.newBuilder() to construct.
     private VotingStatus(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -4541,8 +4517,9 @@ public final class Mgmt {
               break;
             }
             case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              ballotId_ = input.readBytes();
+              ballotId_ = bs;
               break;
             }
             case 16: {
@@ -4683,7 +4660,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required string ballot_id = 1;
     public static final int BALLOT_ID_FIELD_NUMBER = 1;
     private java.lang.Object ballotId_;
     /**
@@ -4726,7 +4702,6 @@ public final class Mgmt {
       }
     }
 
-    // required .VotingStatus.VoteStatus status = 2;
     public static final int STATUS_FIELD_NUMBER = 2;
     private poke.core.Mgmt.VotingStatus.VoteStatus status_;
     /**
@@ -4742,7 +4717,6 @@ public final class Mgmt {
       return status_;
     }
 
-    // optional int32 winner = 3;
     public static final int WINNER_FIELD_NUMBER = 3;
     private int winner_;
     /**
@@ -4766,7 +4740,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasBallotId()) {
         memoizedIsInitialized = 0;
@@ -4899,8 +4874,9 @@ public final class Mgmt {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.VotingStatusOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:VotingStatus)
+        poke.core.Mgmt.VotingStatusOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_VotingStatus_descriptor;
@@ -5041,7 +5017,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required string ballot_id = 1;
       private java.lang.Object ballotId_ = "";
       /**
        * <code>required string ballot_id = 1;</code>
@@ -5055,9 +5030,12 @@ public final class Mgmt {
       public java.lang.String getBallotId() {
         java.lang.Object ref = ballotId_;
         if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          ballotId_ = s;
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            ballotId_ = s;
+          }
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5115,7 +5093,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required .VotingStatus.VoteStatus status = 2;
       private poke.core.Mgmt.VotingStatus.VoteStatus status_ = poke.core.Mgmt.VotingStatus.VoteStatus.BALLOTABANDONED;
       /**
        * <code>required .VotingStatus.VoteStatus status = 2;</code>
@@ -5151,7 +5128,6 @@ public final class Mgmt {
         return this;
       }
 
-      // optional int32 winner = 3;
       private int winner_ ;
       /**
        * <code>optional int32 winner = 3;</code>
@@ -5195,10 +5171,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:VotingStatus)
   }
 
-  public interface VectorClockOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface VectorClockOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:VectorClock)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required int32 node_id = 1;
     /**
      * <code>required int32 node_id = 1;</code>
      */
@@ -5208,7 +5184,6 @@ public final class Mgmt {
      */
     int getNodeId();
 
-    // required int32 version = 2;
     /**
      * <code>required int32 version = 2;</code>
      */
@@ -5218,7 +5193,6 @@ public final class Mgmt {
      */
     int getVersion();
 
-    // required int64 time = 3;
     /**
      * <code>required int64 time = 3;</code>
      */
@@ -5236,8 +5210,9 @@ public final class Mgmt {
    * </pre>
    */
   public static final class VectorClock extends
-      com.google.protobuf.GeneratedMessage
-      implements VectorClockOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:VectorClock)
+      VectorClockOrBuilder {
     // Use VectorClock.newBuilder() to construct.
     private VectorClock(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -5338,7 +5313,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required int32 node_id = 1;
     public static final int NODE_ID_FIELD_NUMBER = 1;
     private int nodeId_;
     /**
@@ -5354,7 +5328,6 @@ public final class Mgmt {
       return nodeId_;
     }
 
-    // required int32 version = 2;
     public static final int VERSION_FIELD_NUMBER = 2;
     private int version_;
     /**
@@ -5370,7 +5343,6 @@ public final class Mgmt {
       return version_;
     }
 
-    // required int64 time = 3;
     public static final int TIME_FIELD_NUMBER = 3;
     private long time_;
     /**
@@ -5394,7 +5366,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasNodeId()) {
         memoizedIsInitialized = 0;
@@ -5531,8 +5504,9 @@ public final class Mgmt {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.VectorClockOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:VectorClock)
+        poke.core.Mgmt.VectorClockOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_VectorClock_descriptor;
@@ -5675,7 +5649,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required int32 node_id = 1;
       private int nodeId_ ;
       /**
        * <code>required int32 node_id = 1;</code>
@@ -5708,7 +5681,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required int32 version = 2;
       private int version_ ;
       /**
        * <code>required int32 version = 2;</code>
@@ -5741,7 +5713,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required int64 time = 3;
       private long time_ ;
       /**
        * <code>required int64 time = 3;</code>
@@ -5785,10 +5756,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:VectorClock)
   }
 
-  public interface MgmtHeaderOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface MgmtHeaderOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:MgmtHeader)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required int32 originator = 2;
     /**
      * <code>required int32 originator = 2;</code>
      */
@@ -5798,7 +5769,6 @@ public final class Mgmt {
      */
     int getOriginator();
 
-    // required int32 securityCode = 3;
     /**
      * <code>required int32 securityCode = 3;</code>
      */
@@ -5808,7 +5778,6 @@ public final class Mgmt {
      */
     int getSecurityCode();
 
-    // required int64 time = 4;
     /**
      * <code>required int64 time = 4;</code>
      */
@@ -5818,7 +5787,6 @@ public final class Mgmt {
      */
     long getTime();
 
-    // repeated .VectorClock path = 7;
     /**
      * <code>repeated .VectorClock path = 7;</code>
      *
@@ -5863,7 +5831,6 @@ public final class Mgmt {
     poke.core.Mgmt.VectorClockOrBuilder getPathOrBuilder(
         int index);
 
-    // optional int32 toNode = 8;
     /**
      * <code>optional int32 toNode = 8;</code>
      *
@@ -5889,8 +5856,9 @@ public final class Mgmt {
    * </pre>
    */
   public static final class MgmtHeader extends
-      com.google.protobuf.GeneratedMessage
-      implements MgmtHeaderOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:MgmtHeader)
+      MgmtHeaderOrBuilder {
     // Use MgmtHeader.newBuilder() to construct.
     private MgmtHeader(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -6007,7 +5975,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required int32 originator = 2;
     public static final int ORIGINATOR_FIELD_NUMBER = 2;
     private int originator_;
     /**
@@ -6023,7 +5990,6 @@ public final class Mgmt {
       return originator_;
     }
 
-    // required int32 securityCode = 3;
     public static final int SECURITYCODE_FIELD_NUMBER = 3;
     private int securityCode_;
     /**
@@ -6039,7 +6005,6 @@ public final class Mgmt {
       return securityCode_;
     }
 
-    // required int64 time = 4;
     public static final int TIME_FIELD_NUMBER = 4;
     private long time_;
     /**
@@ -6055,7 +6020,6 @@ public final class Mgmt {
       return time_;
     }
 
-    // repeated .VectorClock path = 7;
     public static final int PATH_FIELD_NUMBER = 7;
     private java.util.List<poke.core.Mgmt.VectorClock> path_;
     /**
@@ -6111,7 +6075,6 @@ public final class Mgmt {
       return path_.get(index);
     }
 
-    // optional int32 toNode = 8;
     public static final int TONODE_FIELD_NUMBER = 8;
     private int toNode_;
     /**
@@ -6145,7 +6108,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasOriginator()) {
         memoizedIsInitialized = 0;
@@ -6302,8 +6266,9 @@ public final class Mgmt {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.MgmtHeaderOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:MgmtHeader)
+        poke.core.Mgmt.MgmtHeaderOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_MgmtHeader_descriptor;
@@ -6503,7 +6468,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required int32 originator = 2;
       private int originator_ ;
       /**
        * <code>required int32 originator = 2;</code>
@@ -6536,7 +6500,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required int32 securityCode = 3;
       private int securityCode_ ;
       /**
        * <code>required int32 securityCode = 3;</code>
@@ -6569,7 +6532,6 @@ public final class Mgmt {
         return this;
       }
 
-      // required int64 time = 4;
       private long time_ ;
       /**
        * <code>required int64 time = 4;</code>
@@ -6602,7 +6564,6 @@ public final class Mgmt {
         return this;
       }
 
-      // repeated .VectorClock path = 7;
       private java.util.List<poke.core.Mgmt.VectorClock> path_ =
         java.util.Collections.emptyList();
       private void ensurePathIsMutable() {
@@ -6784,7 +6745,8 @@ public final class Mgmt {
           java.lang.Iterable<? extends poke.core.Mgmt.VectorClock> values) {
         if (pathBuilder_ == null) {
           ensurePathIsMutable();
-          super.addAll(values, path_);
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, path_);
           onChanged();
         } else {
           pathBuilder_.addAllMessages(values);
@@ -6914,7 +6876,6 @@ public final class Mgmt {
         return pathBuilder_;
       }
 
-      // optional int32 toNode = 8;
       private int toNode_ ;
       /**
        * <code>optional int32 toNode = 8;</code>
@@ -6974,10 +6935,10 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:MgmtHeader)
   }
 
-  public interface ManagementOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+  public interface ManagementOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Management)
+      com.google.protobuf.MessageOrBuilder {
 
-    // required .MgmtHeader header = 1;
     /**
      * <code>required .MgmtHeader header = 1;</code>
      */
@@ -6991,7 +6952,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.MgmtHeaderOrBuilder getHeaderOrBuilder();
 
-    // optional .Network graph = 2;
     /**
      * <code>optional .Network graph = 2;</code>
      *
@@ -7017,7 +6977,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.NetworkOrBuilder getGraphOrBuilder();
 
-    // optional .Heartbeat beat = 3;
     /**
      * <code>optional .Heartbeat beat = 3;</code>
      *
@@ -7043,7 +7002,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.HeartbeatOrBuilder getBeatOrBuilder();
 
-    // optional .LeaderElection election = 4;
     /**
      * <code>optional .LeaderElection election = 4;</code>
      *
@@ -7069,7 +7027,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.LeaderElectionOrBuilder getElectionOrBuilder();
 
-    // optional .VotingBallot vote_declare = 7;
     /**
      * <code>optional .VotingBallot vote_declare = 7;</code>
      *
@@ -7095,7 +7052,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.VotingBallotOrBuilder getVoteDeclareOrBuilder();
 
-    // optional .VotingCast vote_cast = 8;
     /**
      * <code>optional .VotingCast vote_cast = 8;</code>
      */
@@ -7109,7 +7065,6 @@ public final class Mgmt {
      */
     poke.core.Mgmt.VotingCastOrBuilder getVoteCastOrBuilder();
 
-    // optional .VotingStatus vote_status = 9;
     /**
      * <code>optional .VotingStatus vote_status = 9;</code>
      */
@@ -7131,8 +7086,9 @@ public final class Mgmt {
    * </pre>
    */
   public static final class Management extends
-      com.google.protobuf.GeneratedMessage
-      implements ManagementOrBuilder {
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:Management)
+      ManagementOrBuilder {
     // Use Management.newBuilder() to construct.
     private Management(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -7309,7 +7265,6 @@ public final class Mgmt {
     }
 
     private int bitField0_;
-    // required .MgmtHeader header = 1;
     public static final int HEADER_FIELD_NUMBER = 1;
     private poke.core.Mgmt.MgmtHeader header_;
     /**
@@ -7331,7 +7286,6 @@ public final class Mgmt {
       return header_;
     }
 
-    // optional .Network graph = 2;
     public static final int GRAPH_FIELD_NUMBER = 2;
     private poke.core.Mgmt.Network graph_;
     /**
@@ -7365,7 +7319,6 @@ public final class Mgmt {
       return graph_;
     }
 
-    // optional .Heartbeat beat = 3;
     public static final int BEAT_FIELD_NUMBER = 3;
     private poke.core.Mgmt.Heartbeat beat_;
     /**
@@ -7399,7 +7352,6 @@ public final class Mgmt {
       return beat_;
     }
 
-    // optional .LeaderElection election = 4;
     public static final int ELECTION_FIELD_NUMBER = 4;
     private poke.core.Mgmt.LeaderElection election_;
     /**
@@ -7433,7 +7385,6 @@ public final class Mgmt {
       return election_;
     }
 
-    // optional .VotingBallot vote_declare = 7;
     public static final int VOTE_DECLARE_FIELD_NUMBER = 7;
     private poke.core.Mgmt.VotingBallot voteDeclare_;
     /**
@@ -7467,7 +7418,6 @@ public final class Mgmt {
       return voteDeclare_;
     }
 
-    // optional .VotingCast vote_cast = 8;
     public static final int VOTE_CAST_FIELD_NUMBER = 8;
     private poke.core.Mgmt.VotingCast voteCast_;
     /**
@@ -7489,7 +7439,6 @@ public final class Mgmt {
       return voteCast_;
     }
 
-    // optional .VotingStatus vote_status = 9;
     public static final int VOTE_STATUS_FIELD_NUMBER = 9;
     private poke.core.Mgmt.VotingStatus voteStatus_;
     /**
@@ -7523,7 +7472,8 @@ public final class Mgmt {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
 
       if (!hasHeader()) {
         memoizedIsInitialized = 0;
@@ -7720,8 +7670,9 @@ public final class Mgmt {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements poke.core.Mgmt.ManagementOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Management)
+        poke.core.Mgmt.ManagementOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return poke.core.Mgmt.internal_static_Management_descriptor;
@@ -7995,7 +7946,6 @@ public final class Mgmt {
       }
       private int bitField0_;
 
-      // required .MgmtHeader header = 1;
       private poke.core.Mgmt.MgmtHeader header_ = poke.core.Mgmt.MgmtHeader.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           poke.core.Mgmt.MgmtHeader, poke.core.Mgmt.MgmtHeader.Builder, poke.core.Mgmt.MgmtHeaderOrBuilder> headerBuilder_;
@@ -8104,7 +8054,7 @@ public final class Mgmt {
         if (headerBuilder_ == null) {
           headerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               poke.core.Mgmt.MgmtHeader, poke.core.Mgmt.MgmtHeader.Builder, poke.core.Mgmt.MgmtHeaderOrBuilder>(
-                  header_,
+                  getHeader(),
                   getParentForChildren(),
                   isClean());
           header_ = null;
@@ -8112,7 +8062,6 @@ public final class Mgmt {
         return headerBuilder_;
       }
 
-      // optional .Network graph = 2;
       private poke.core.Mgmt.Network graph_ = poke.core.Mgmt.Network.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           poke.core.Mgmt.Network, poke.core.Mgmt.Network.Builder, poke.core.Mgmt.NetworkOrBuilder> graphBuilder_;
@@ -8257,7 +8206,7 @@ public final class Mgmt {
         if (graphBuilder_ == null) {
           graphBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               poke.core.Mgmt.Network, poke.core.Mgmt.Network.Builder, poke.core.Mgmt.NetworkOrBuilder>(
-                  graph_,
+                  getGraph(),
                   getParentForChildren(),
                   isClean());
           graph_ = null;
@@ -8265,7 +8214,6 @@ public final class Mgmt {
         return graphBuilder_;
       }
 
-      // optional .Heartbeat beat = 3;
       private poke.core.Mgmt.Heartbeat beat_ = poke.core.Mgmt.Heartbeat.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           poke.core.Mgmt.Heartbeat, poke.core.Mgmt.Heartbeat.Builder, poke.core.Mgmt.HeartbeatOrBuilder> beatBuilder_;
@@ -8410,7 +8358,7 @@ public final class Mgmt {
         if (beatBuilder_ == null) {
           beatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               poke.core.Mgmt.Heartbeat, poke.core.Mgmt.Heartbeat.Builder, poke.core.Mgmt.HeartbeatOrBuilder>(
-                  beat_,
+                  getBeat(),
                   getParentForChildren(),
                   isClean());
           beat_ = null;
@@ -8418,7 +8366,6 @@ public final class Mgmt {
         return beatBuilder_;
       }
 
-      // optional .LeaderElection election = 4;
       private poke.core.Mgmt.LeaderElection election_ = poke.core.Mgmt.LeaderElection.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           poke.core.Mgmt.LeaderElection, poke.core.Mgmt.LeaderElection.Builder, poke.core.Mgmt.LeaderElectionOrBuilder> electionBuilder_;
@@ -8563,7 +8510,7 @@ public final class Mgmt {
         if (electionBuilder_ == null) {
           electionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               poke.core.Mgmt.LeaderElection, poke.core.Mgmt.LeaderElection.Builder, poke.core.Mgmt.LeaderElectionOrBuilder>(
-                  election_,
+                  getElection(),
                   getParentForChildren(),
                   isClean());
           election_ = null;
@@ -8571,7 +8518,6 @@ public final class Mgmt {
         return electionBuilder_;
       }
 
-      // optional .VotingBallot vote_declare = 7;
       private poke.core.Mgmt.VotingBallot voteDeclare_ = poke.core.Mgmt.VotingBallot.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           poke.core.Mgmt.VotingBallot, poke.core.Mgmt.VotingBallot.Builder, poke.core.Mgmt.VotingBallotOrBuilder> voteDeclareBuilder_;
@@ -8716,7 +8662,7 @@ public final class Mgmt {
         if (voteDeclareBuilder_ == null) {
           voteDeclareBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               poke.core.Mgmt.VotingBallot, poke.core.Mgmt.VotingBallot.Builder, poke.core.Mgmt.VotingBallotOrBuilder>(
-                  voteDeclare_,
+                  getVoteDeclare(),
                   getParentForChildren(),
                   isClean());
           voteDeclare_ = null;
@@ -8724,7 +8670,6 @@ public final class Mgmt {
         return voteDeclareBuilder_;
       }
 
-      // optional .VotingCast vote_cast = 8;
       private poke.core.Mgmt.VotingCast voteCast_ = poke.core.Mgmt.VotingCast.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           poke.core.Mgmt.VotingCast, poke.core.Mgmt.VotingCast.Builder, poke.core.Mgmt.VotingCastOrBuilder> voteCastBuilder_;
@@ -8833,7 +8778,7 @@ public final class Mgmt {
         if (voteCastBuilder_ == null) {
           voteCastBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               poke.core.Mgmt.VotingCast, poke.core.Mgmt.VotingCast.Builder, poke.core.Mgmt.VotingCastOrBuilder>(
-                  voteCast_,
+                  getVoteCast(),
                   getParentForChildren(),
                   isClean());
           voteCast_ = null;
@@ -8841,7 +8786,6 @@ public final class Mgmt {
         return voteCastBuilder_;
       }
 
-      // optional .VotingStatus vote_status = 9;
       private poke.core.Mgmt.VotingStatus voteStatus_ = poke.core.Mgmt.VotingStatus.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           poke.core.Mgmt.VotingStatus, poke.core.Mgmt.VotingStatus.Builder, poke.core.Mgmt.VotingStatusOrBuilder> voteStatusBuilder_;
@@ -8950,7 +8894,7 @@ public final class Mgmt {
         if (voteStatusBuilder_ == null) {
           voteStatusBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               poke.core.Mgmt.VotingStatus, poke.core.Mgmt.VotingStatus.Builder, poke.core.Mgmt.VotingStatusOrBuilder>(
-                  voteStatus_,
+                  getVoteStatus(),
                   getParentForChildren(),
                   isClean());
           voteStatus_ = null;
@@ -8969,47 +8913,47 @@ public final class Mgmt {
     // @@protoc_insertion_point(class_scope:Management)
   }
 
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Heartbeat_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Heartbeat_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Network_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Network_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_LeaderElection_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_LeaderElection_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_VotingBallot_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_VotingBallot_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_VotingCast_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_VotingCast_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_VotingStatus_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_VotingStatus_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_VectorClock_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_VectorClock_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_MgmtHeader_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_MgmtHeader_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Management_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -9062,71 +9006,71 @@ public final class Mgmt {
       "(\0132\r.VotingStatusB\r\n\tpoke.coreH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-      new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
-        public com.google.protobuf.ExtensionRegistry assignDescriptors(
-            com.google.protobuf.Descriptors.FileDescriptor root) {
-          descriptor = root;
-          internal_static_Heartbeat_descriptor =
-            getDescriptor().getMessageTypes().get(0);
-          internal_static_Heartbeat_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_Heartbeat_descriptor,
-              new java.lang.String[] { "TimeRef", });
-          internal_static_Network_descriptor =
-            getDescriptor().getMessageTypes().get(1);
-          internal_static_Network_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_Network_descriptor,
-              new java.lang.String[] { "FromNodeId", "ToNodeId", "Action", });
-          internal_static_LeaderElection_descriptor =
-            getDescriptor().getMessageTypes().get(2);
-          internal_static_LeaderElection_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_LeaderElection_descriptor,
-              new java.lang.String[] { "LastLogIndex", "TermId", "CandidateId", "Desc", "Action", "Expires", "Hops", });
-          internal_static_VotingBallot_descriptor =
-            getDescriptor().getMessageTypes().get(3);
-          internal_static_VotingBallot_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_VotingBallot_descriptor,
-              new java.lang.String[] { "BallotId", "Desc", "BallotFormat", "ExpiresSec", "MarginToWin", "MaxHops", });
-          internal_static_VotingCast_descriptor =
-            getDescriptor().getMessageTypes().get(4);
-          internal_static_VotingCast_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_VotingCast_descriptor,
-              new java.lang.String[] { "Voter", "BallotId", "Candidate", "Rank", });
-          internal_static_VotingStatus_descriptor =
-            getDescriptor().getMessageTypes().get(5);
-          internal_static_VotingStatus_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_VotingStatus_descriptor,
-              new java.lang.String[] { "BallotId", "Status", "Winner", });
-          internal_static_VectorClock_descriptor =
-            getDescriptor().getMessageTypes().get(6);
-          internal_static_VectorClock_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_VectorClock_descriptor,
-              new java.lang.String[] { "NodeId", "Version", "Time", });
-          internal_static_MgmtHeader_descriptor =
-            getDescriptor().getMessageTypes().get(7);
-          internal_static_MgmtHeader_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_MgmtHeader_descriptor,
-              new java.lang.String[] { "Originator", "SecurityCode", "Time", "Path", "ToNode", });
-          internal_static_Management_descriptor =
-            getDescriptor().getMessageTypes().get(8);
-          internal_static_Management_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_Management_descriptor,
-              new java.lang.String[] { "Header", "Graph", "Beat", "Election", "VoteDeclare", "VoteCast", "VoteStatus", });
-          return null;
-        }
-      };
+        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+          public com.google.protobuf.ExtensionRegistry assignDescriptors(
+              com.google.protobuf.Descriptors.FileDescriptor root) {
+            descriptor = root;
+            return null;
+          }
+        };
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
+    internal_static_Heartbeat_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_Heartbeat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_Heartbeat_descriptor,
+        new java.lang.String[] { "TimeRef", });
+    internal_static_Network_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_Network_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_Network_descriptor,
+        new java.lang.String[] { "FromNodeId", "ToNodeId", "Action", });
+    internal_static_LeaderElection_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_LeaderElection_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_LeaderElection_descriptor,
+        new java.lang.String[] { "LastLogIndex", "TermId", "CandidateId", "Desc", "Action", "Expires", "Hops", });
+    internal_static_VotingBallot_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_VotingBallot_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_VotingBallot_descriptor,
+        new java.lang.String[] { "BallotId", "Desc", "BallotFormat", "ExpiresSec", "MarginToWin", "MaxHops", });
+    internal_static_VotingCast_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_VotingCast_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_VotingCast_descriptor,
+        new java.lang.String[] { "Voter", "BallotId", "Candidate", "Rank", });
+    internal_static_VotingStatus_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_VotingStatus_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_VotingStatus_descriptor,
+        new java.lang.String[] { "BallotId", "Status", "Winner", });
+    internal_static_VectorClock_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_VectorClock_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_VectorClock_descriptor,
+        new java.lang.String[] { "NodeId", "Version", "Time", });
+    internal_static_MgmtHeader_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_MgmtHeader_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_MgmtHeader_descriptor,
+        new java.lang.String[] { "Originator", "SecurityCode", "Time", "Path", "ToNode", });
+    internal_static_Management_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_Management_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_Management_descriptor,
+        new java.lang.String[] { "Header", "Graph", "Beat", "Election", "VoteDeclare", "VoteCast", "VoteStatus", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
