@@ -105,12 +105,15 @@ public class InboundAppWorker extends Thread {
 
 					//If I am the leader,break image and send to all slave serviers
 					if(leaderNode != null && leaderNode == nodeId){
+						logger.info("reached inboud app worker inside leader");
 						if(req.getHeader().getPhase() == 2 || req.getHeader().getPhase() == 4 ){
 							iManager.processImage((generateImage(req)),req);
 						}
 						}
 						//If the node is a non-leader node, then send the image to the leader for further processing
 					else if(leaderNode != nodeId ){
+						logger.info("reached inboud app worker");
+
 							//Build new Request
 							if(req.getHeader().getPhase() == 3 || req.getHeader().getPhase() == 5){
 								iManager.processImage((generateImage(req)),req);
